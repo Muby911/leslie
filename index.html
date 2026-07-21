@@ -10,21 +10,23 @@
 
 <body>
 
-    <audio id="bg-music" src="music.mp3" autoplay loop </audio>
+    <audio id="bg-music" src="music.mp3" loop></audio>
 
-        <div class="card">
-            <h1 class="main-title">A quiz for the most beautiful chicken I've ever seen 🐔✨</h1>
+    <div class="card">
+        <button id="music-btn" class="music-toggle" onclick="toggleAudio()">🎵 Play Music</button>
 
-            <span id="question-count" class="badge">Question 1</span>
+        <h1 class="main-title">A quiz for the most beautiful chicken I've ever seen 🐔✨</h1>
 
-            <h2 id="question-text">Loading...</h2>
+        <span id="question-count" class="badge">Question 1</span>
 
-            <div id="options-container" class="options-grid"></div>
+        <h2 id="question-text">Loading...</h2>
 
-            <button id="next-btn" onclick="handleNext()" style="display: none;">Next ➡️</button>
-        </div>
+        <div id="options-container" class="options-grid"></div>
 
-        <script src="script.js"></script>
+        <button id="next-btn" onclick="handleNext()" style="display: none;">Next ➡️</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
