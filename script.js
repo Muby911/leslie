@@ -1,29 +1,30 @@
 // --- QUIZ DATA ---
 const quizData = [
     {
-        question: "How are you feeling right now on a scale of 1 to 10?",
+        question: "Hey chicken🙃How are you feeling right now on a scale of 1 to 10?",
         options: ["10/10 Ready to conquer 💪", "Need coffee ASAP ☕", "Just chillin 😎"]
     },
     {
-        question: "Pick the ultimate snack for today:",
-        options: ["Warm Cookies 🍪", "Ice Cream 🍦", "Chips & Dip 🥨"]
+        question: "Do you like your present? 😁",
+        options: ["yes your so cool! 🤩", "kinda", "No😑"]
     },
     {
-        question: "What is the official plan if you get tired today?",
-        options: ["Take a cozy 20-min nap 😴", "Listen to good music 🎧", "Power through like a champ 💥"]
+        question: "Am i winning againts your depression? 😛",
+        options: ["Yes! you are🎉", "kinda😑", "No 😔"]
     },
     {
-        question: "If we could teleport anywhere right now, where are we going?",
-        options: ["The beach 🏖️", "A cute cozy café ☕", "An amusement park 🎢"]
+        question: "Do you want me to be here for you forever? 🥰",
+        options: ["yes i do☺️", "Maybe🙂", "Nah im good🙄"]
     },
     {
-        question: "Quick! What's the vibe for tonight?",
-        options: ["Movie Marathon 🍿", "Late night snack run 🍫", "Early bedtime 🛌"]
+        question: "Did i make you smile 😛?",
+        options: ["yes🥰", "no 😔"]
     }
 ];
 
 let currentIndex = 0;
 let selectedOption = null;
+let userAnswers = []; // Store her chosen answers
 
 // --- AUDIO LOGIC ---
 function toggleAudio() {
@@ -42,7 +43,6 @@ function toggleAudio() {
     }
 }
 
-// Automatically start audio on first screen interaction if possible
 function startAudioOnFirstClick() {
     const music = document.getElementById("bg-music");
     const btn = document.getElementById("music-btn");
@@ -54,7 +54,7 @@ function startAudioOnFirstClick() {
             text.innerText = "Pause Music";
             document.removeEventListener("click", startAudioOnFirstClick);
         }).catch(() => {
-            // Autoplay was blocked by the browser; user can click the music button directly
+            // Browser blocked autoplay; button is available
         });
     }
 }
@@ -92,6 +92,14 @@ function loadQuestion() {
 }
 
 function handleNext() {
+    // Save chosen answer
+    if (selectedOption) {
+        userAnswers.push({
+            question: quizData[currentIndex].question,
+            answer: selectedOption
+        });
+    }
+
     currentIndex++;
 
     if (currentIndex < quizData.length) {
@@ -103,18 +111,44 @@ function handleNext() {
 
 function showFinalScreen() {
     document.getElementById("question-count").style.display = "none";
-    document.getElementById("question-text").innerHTML = "🎉 YAY! 🎉";
+    document.getElementById("question-text").innerHTML = "🎉 Quiz Complete! 🎉";
 
-    document.getElementById("options-container").innerHTML = `
-        <p style="font-size: 1.05rem; color: #4a5568; line-height: 1.6; margin: 10px 0;">
-            You completed the quiz! You are super awesome and hope this brought a huge smile to your face today! ✨💖
-        </p>
+    // Build the answers summary
+    let summaryHTML = `
+        <div style="text-align: left; background: #f7fafc; padding: 15px; border-radius: 16px; margin-bottom: 20px; max-height: 200px; overflow-y: auto; border: 1px solid #edf2f7;">
+            <h3 style="font-size: 1rem; color: #2d3748; margin-bottom: 10px; text-align: center;">Your Answers 📝</h3>
     `;
 
+    userAnswers.forEach((item, index) => {
+        summaryHTML += `
+            <div style="margin-bottom: 10px; font-size: 0.88rem;">
+                <strong style="color: #6c5ce7;">Q${index + 1}:</strong> ${item.question}<br>
+                <span style="color: #2d3748; font-weight: 600;">👉 ${item.answer}</span>
+            </div>
+        `;
+    });
+
+    summaryHTML += `</div>`;
+
+    // Heartfelt love message & compliments
+    summaryHTML += `
+        <div style="margin-top: 15px;">
+            <p style="font-size: 1.1rem; color: #d63384; font-weight: 700; line-height: 1.5; margin-bottom: 10px;">
+                You are absolutely beautiful, stunning, and amazing in every single way! ✨💖
+            </p>
+            <p style="font-size: 1.05rem; color: #4a5568; font-weight: 600; line-height: 1.5;">
+                I love you so much! Thank you for taking this quiz! 🥰👑
+            </p>
+        </div>
+    `;
+
+    document.getElementById("options-container").innerHTML = summaryHTML;
+
     const nextBtn = document.getElementById("next-btn");
-    nextBtn.innerText = "Restart 🔄";
+    nextBtn.innerText = "Play Again 🔄";
     nextBtn.onclick = () => {
         currentIndex = 0;
+        userAnswers = [];
         document.getElementById("question-count").style.display = "inline-block";
         nextBtn.innerText = "Next ➡️";
         nextBtn.onclick = handleNext;
