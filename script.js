@@ -28,9 +28,10 @@ let selectedOption = null;
 
 // --- AUDIO LOGIC ---
 // Guarantees audio starts automatically on her very first tap/click anywhere
-const music = document.getElementById("bg-music");
+
 
 function startAudio() {
+    const music = document.getElementById("bg-music");
     if (music) {
         music.play().then(() => {
             // Once music starts playing, remove the click listener
