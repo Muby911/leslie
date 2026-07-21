@@ -1,73 +1,110 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
     padding: 20px;
 }
 
 .card {
     background: #ffffff;
-    padding: 35px 25px;
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    padding: 30px 25px;
+    border-radius: 28px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
     max-width: 420px;
     width: 100%;
     text-align: center;
     position: relative;
-    transition: transform 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
+/* Super Noticeable Music Button */
 .music-toggle {
-    background: #fff0f5;
-    border: 2px solid #ffb6c1;
-    color: #d63384;
-    padding: 8px 16px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border-radius: 20px;
+    width: 100%;
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    color: #ffffff;
+    border: none;
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 18px;
     cursor: pointer;
-    margin-bottom: 15px;
-    transition: all 0.2s ease;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 8px 20px rgba(255, 117, 140, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: pulse 2s infinite;
 }
 
 .music-toggle:hover {
-    background: #ffb6c1;
-    color: #ffffff;
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(255, 117, 140, 0.5);
+}
+
+.music-toggle.playing {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    box-shadow: 0 8px 20px rgba(56, 239, 125, 0.4);
+    animation: none;
+}
+
+.music-icon {
+    font-size: 1.2rem;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .main-title {
-    color: #2b2d42;
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 20px;
+    color: #2d3748;
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin-bottom: 18px;
     line-height: 1.4;
 }
 
+.badge-container {
+    margin-bottom: 15px;
+}
+
 .badge {
-    background: #eef2ff;
-    color: #4f46e5;
+    background: #f0f3ff;
+    color: #6c5ce7;
     font-size: 0.8rem;
-    font-weight: 700;
-    padding: 6px 14px;
+    font-weight: 800;
+    padding: 6px 16px;
     border-radius: 20px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
     display: inline-block;
 }
 
 h2 {
-    color: #374151;
-    font-size: 1.25rem;
-    margin: 20px 0;
+    color: #4a5568;
+    font-size: 1.2rem;
+    margin-bottom: 22px;
     line-height: 1.4;
 }
 
@@ -79,47 +116,47 @@ h2 {
 }
 
 .opt-btn {
-    background: #f9fafb;
-    border: 2px solid #e5e7eb;
-    color: #374151;
+    background: #f7fafc;
+    border: 2px solid #edf2f7;
+    color: #2d3748;
     padding: 14px 18px;
     font-size: 0.95rem;
-    font-weight: 500;
-    border-radius: 14px;
+    font-weight: 600;
+    border-radius: 16px;
     cursor: pointer;
     transition: all 0.2s ease;
     text-align: left;
 }
 
 .opt-btn:hover {
-    background: #f3f4f6;
-    border-color: #d1d5db;
-    transform: translateY(-1px);
+    background: #edf2f7;
+    border-color: #cbd5e0;
+    transform: translateY(-2px);
 }
 
 .opt-btn.selected {
-    background: #ecfdf5;
-    border-color: #10b981;
-    color: #065f46;
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+    background: #e6fffa;
+    border-color: #319795;
+    color: #234e52;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(49, 151, 149, 0.2);
 }
 
 #next-btn {
-    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
     color: white;
     border: none;
-    padding: 14px 24px;
+    padding: 15px 24px;
     font-size: 1rem;
-    border-radius: 14px;
+    border-radius: 16px;
     cursor: pointer;
     width: 100%;
-    font-weight: 600;
-    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(108, 92, 231, 0.35);
     transition: all 0.2s ease;
 }
 
 #next-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+    box-shadow: 0 8px 22px rgba(108, 92, 231, 0.45);
 }

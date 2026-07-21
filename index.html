@@ -13,11 +13,16 @@
     <audio id="bg-music" src="music.mp3" loop></audio>
 
     <div class="card">
-        <button id="music-btn" class="music-toggle" onclick="toggleAudio()">🎵 Play Music</button>
+        <button id="music-btn" class="music-toggle" onclick="toggleAudio()">
+            <span class="music-icon">🎵</span>
+            <span id="music-text">Play Background Music</span>
+        </button>
 
         <h1 class="main-title">A quiz for the most beautiful chicken I've ever seen 🐔✨</h1>
 
-        <span id="question-count" class="badge">Question 1</span>
+        <div class="badge-container">
+            <span id="question-count" class="badge">Question 1</span>
+        </div>
 
         <h2 id="question-text">Loading...</h2>
 

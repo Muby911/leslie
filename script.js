@@ -29,27 +29,32 @@ let selectedOption = null;
 function toggleAudio() {
     const music = document.getElementById("bg-music");
     const btn = document.getElementById("music-btn");
+    const text = document.getElementById("music-text");
 
     if (music.paused) {
         music.play();
-        btn.innerText = "⏸️ Pause Music";
+        btn.classList.add("playing");
+        text.innerText = "Pause Music";
     } else {
         music.pause();
-        btn.innerText = "🎵 Play Music";
+        btn.classList.remove("playing");
+        text.innerText = "Play Music";
     }
 }
 
-// Automatically start audio on first interaction if possible
+// Automatically start audio on first screen interaction if possible
 function startAudioOnFirstClick() {
     const music = document.getElementById("bg-music");
     const btn = document.getElementById("music-btn");
+    const text = document.getElementById("music-text");
 
     if (music.paused) {
         music.play().then(() => {
-            btn.innerText = "⏸️ Pause Music";
+            btn.classList.add("playing");
+            text.innerText = "Pause Music";
             document.removeEventListener("click", startAudioOnFirstClick);
         }).catch(() => {
-            // Browser blocked autoplay; user can still use the button
+            // Autoplay was blocked by the browser; user can click the music button directly
         });
     }
 }
@@ -101,7 +106,7 @@ function showFinalScreen() {
     document.getElementById("question-text").innerHTML = "🎉 YAY! 🎉";
 
     document.getElementById("options-container").innerHTML = `
-        <p style="font-size: 1.05rem; color: #4b5563; line-height: 1.6; margin: 10px 0;">
+        <p style="font-size: 1.05rem; color: #4a5568; line-height: 1.6; margin: 10px 0;">
             You completed the quiz! You are super awesome and hope this brought a huge smile to your face today! ✨💖
         </p>
     `;
