@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Quiz For The Most Beautiful Chicken 🐔</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <audio id="bg-music" src="music.mp3" autoplay loop></audio>
+
+    <div class="card">
+        <h1 class="main-title">A quiz for the most beautiful chicken I've ever seen 🐔✨</h1>
+
+        <span id="question-count" class="badge">Question 1</span>
+
+        <h2 id="question-text">Loading...</h2>
+
+        <div id="options-container" class="options-grid"></div>
+
+        <button id="next-btn" onclick="handleNext()" style="display: none;">Next ➡️</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
